@@ -72,20 +72,34 @@ export function Navbar({
         <Button
           variant="ghost"
           size="sm"
-          onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+          onClick={() => {
+            if (!mounted || !theme) return;
+            setTheme(theme === 'dark' ? 'light' : 'dark');
+          }}
+          disabled={!mounted || !theme}
           className={
             actualVariant === 'dashboard' ? 'h-8 w-8 px-0' : 'h-9 w-9 px-0'
           }
           suppressHydrationWarning
         >
-          {mounted && theme === 'dark' ? (
-            <Sun
-              className={
-                actualVariant === 'dashboard'
-                  ? 'h-[1.1rem] w-[1.1rem]'
-                  : 'h-[1.2rem] w-[1.2rem]'
-              }
-            />
+          {mounted && theme ? (
+            theme === 'dark' ? (
+              <Sun
+                className={
+                  actualVariant === 'dashboard'
+                    ? 'h-[1.1rem] w-[1.1rem]'
+                    : 'h-[1.2rem] w-[1.2rem]'
+                }
+              />
+            ) : (
+              <Moon
+                className={
+                  actualVariant === 'dashboard'
+                    ? 'h-[1.1rem] w-[1.1rem]'
+                    : 'h-[1.2rem] w-[1.2rem]'
+                }
+              />
+            )
           ) : (
             <Moon
               className={
