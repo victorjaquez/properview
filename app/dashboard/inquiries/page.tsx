@@ -3,18 +3,10 @@
 import { useInquiriesContext } from '@/providers/InquiriesProvider';
 import { InquiriesLoadingSkeleton } from '@/components/inquiries/InquiriesLoadingSkeleton';
 import { InquiriesTable } from '@/components/inquiries/InquiriesTable';
-import { useProperties } from '@/hooks/useProperties';
 
 export default function InquiriesPage() {
   const { inquiries, markAsRead, markAsUnread, isLoading, error } =
     useInquiriesContext();
-  const { properties } = useProperties();
-
-  // Join inquiries with property data
-  const inquiriesWithProperties = inquiries.map((inquiry) => ({
-    ...inquiry,
-    property: properties.find((p) => p.id === inquiry.propertyId),
-  }));
 
   if (isLoading) {
     return <InquiriesLoadingSkeleton />;
@@ -33,7 +25,7 @@ export default function InquiriesPage() {
       </div>
 
       <InquiriesTable
-        inquiries={inquiriesWithProperties}
+        inquiries={inquiries}
         onMarkAsRead={markAsRead}
         onMarkAsUnread={markAsUnread}
       />

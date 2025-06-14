@@ -29,6 +29,10 @@ export interface Inquiry {
   dateSubmitted: string;
 }
 
+export interface InquiryWithProperty extends Inquiry {
+  property: Property;
+}
+
 export interface Agent {
   id: string;
   name: string;

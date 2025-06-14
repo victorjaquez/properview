@@ -26,11 +26,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { cn } from '@/lib/utils';
-import type { Inquiry, Property } from '@/components/types';
-
-interface InquiryWithProperty extends Inquiry {
-  property?: Property;
-}
+import type { InquiryWithProperty } from '@/components/types';
 
 interface InquiriesTableProps {
   inquiries: InquiryWithProperty[];
@@ -67,9 +63,7 @@ export function InquiriesTable({
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           <a
-            href={`mailto:${inquiry.email}?subject=Re: ${
-              inquiry.property?.title || 'Property Inquiry'
-            }`}
+            href={`mailto:${inquiry.email}?subject=Re: ${inquiry.property.title}`}
           >
             Reply via Email
           </a>
@@ -79,13 +73,11 @@ export function InquiriesTable({
             <a href={`tel:${inquiry.phone}`}>Call {inquiry.phone}</a>
           </DropdownMenuItem>
         )}
-        {inquiry.property && (
-          <DropdownMenuItem>
-            <Link href={`/dashboard/listings/${inquiry.property.id}`}>
-              View Property
-            </Link>
-          </DropdownMenuItem>
-        )}
+        <DropdownMenuItem>
+          <Link href={`/dashboard/listings/${inquiry.property.id}`}>
+            View Property
+          </Link>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
@@ -127,11 +119,10 @@ export function InquiriesTable({
                     <div className="space-y-3">
                       <div>
                         <h4 className="font-medium text-sm">
-                          {inquiry.property?.title || 'Property Not Found'}
+                          {inquiry.property.title}
                         </h4>
                         <p className="text-xs text-muted-foreground">
-                          {inquiry.property?.address ||
-                            `Property ID: ${inquiry.propertyId}`}
+                          {inquiry.property.address}
                         </p>
                       </div>
 
@@ -207,11 +198,10 @@ export function InquiriesTable({
                       <TableCell className="font-medium">
                         <div>
                           <div className="font-medium">
-                            {inquiry.property?.title || 'Property Not Found'}
+                            {inquiry.property.title}
                           </div>
                           <div className="text-sm text-muted-foreground">
-                            {inquiry.property?.address ||
-                              `Property ID: ${inquiry.propertyId}`}
+                            {inquiry.property.address}
                           </div>
                         </div>
                       </TableCell>

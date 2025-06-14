@@ -1,9 +1,21 @@
-// Simple session ID for demo purposes
+// Simple session ID for demo purposes - persists during browser session
 export function generateSessionId(): string {
-  // For demo: just generate a simple random session ID
-  return (
-    'demo_session_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now()
-  );
+  if (typeof window === 'undefined') return 'server_session';
+
+  // Check if we already have a session ID stored
+  let sessionId = sessionStorage.getItem('properview_session_id');
+
+  if (!sessionId) {
+    // Generate a new session ID if none exists
+    sessionId =
+      'demo_session_' +
+      Math.random().toString(36).substr(2, 9) +
+      '_' +
+      Date.now();
+    sessionStorage.setItem('properview_session_id', sessionId);
+  }
+
+  return sessionId;
 }
 
 // Track a listing view

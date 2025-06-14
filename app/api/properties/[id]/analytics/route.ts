@@ -8,17 +8,17 @@ export async function GET(
   try {
     const { id: propertyId } = await params;
 
-    // Get total views for this property
+    // Get total views for this property (all-time)
     const totalViews = await prisma.listingView.count({
       where: { propertyId },
     });
 
-    // Get total inquiries for this property
+    // Get total inquiries for this property (all-time)
     const totalInquiries = await prisma.inquiry.count({
       where: { propertyId },
     });
 
-    // Get unique visitors for this property
+    // Get unique visitors for this property (all-time)
     const uniqueVisitors = await prisma.listingView
       .findMany({
         where: { propertyId },

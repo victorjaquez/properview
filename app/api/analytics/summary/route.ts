@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+import { MOCK_AGENT_ID } from '@/lib/constants';
 
 export async function GET() {
   try {
@@ -108,48 +109,55 @@ export async function GET() {
       uniqueVisitors: day.uniqueVisitors,
     }));
 
-    // Get top performing properties
-    const topProperties = await prisma.propertyAnalytics.groupBy({
-      by: ['propertyId'],
-      where: {
-        date: {
-          gte: thirtyDaysAgo,
-        },
-      },
-      _sum: {
-        views: true,
-        inquiries: true,
-        uniqueVisitors: true,
-      },
-      orderBy: {
-        _sum: {
-          views: 'desc',
-        },
-      },
-      take: 5,
+    // Get agent's property IDs first
+    const agentProperties = await prisma.property.findMany({
+      where: { agentId: MOCK_AGENT_ID },
+      select: { id: true },
     });
+    const agentPropertyIds = agentProperties.map((p) => p.id);
 
-    // Get property details for top properties
-    const topPropertiesWithDetails = (
-      await Promise.all(
-        topProperties.map(async (prop) => {
-          const property = await prisma.property.findUnique({
-            where: { id: prop.propertyId },
+    // Get top performing properties (all-time, real-time data from raw tables)
+    const topPropertiesData = await Promise.all(
+      agentPropertyIds.map(async (propertyId) => {
+        const [property, views, inquiries, uniqueVisitors] = await Promise.all([
+          prisma.property.findUnique({
+            where: { id: propertyId },
             select: { id: true, title: true, address: true, price: true },
-          });
+          }),
+          prisma.listingView.count({
+            where: { propertyId },
+          }),
+          prisma.inquiry.count({
+            where: { propertyId },
+          }),
+          prisma.listingView
+            .findMany({
+              where: { propertyId },
+              select: { sessionId: true },
+              distinct: ['sessionId'],
+            })
+            .then((sessions) => sessions.length),
+        ]);
 
-          // Skip if property doesn't exist
-          if (!property) return null;
+        if (!property) return null;
 
-          return {
-            ...property,
-            views: prop._sum.views || 0,
-            inquiries: prop._sum.inquiries || 0,
-            uniqueVisitors: prop._sum.uniqueVisitors || 0,
-          };
-        })
+        return {
+          ...property,
+          views,
+          inquiries,
+          uniqueVisitors,
+        };
+      })
+    );
+
+    // Filter out null entries and sort by views
+    const topPropertiesWithDetails = topPropertiesData
+      .filter(
+        (property): property is NonNullable<typeof property> =>
+          property !== null
       )
-    ).filter(Boolean); // Remove null entries
+      .sort((a, b) => b.views - a.views)
+      .slice(0, 5);
 
     return NextResponse.json({
       summary: {

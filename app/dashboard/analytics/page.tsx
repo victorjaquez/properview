@@ -5,6 +5,7 @@ import { ChartPlaceholders } from '@/components/analytics/ChartPlaceholders';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { Button } from '@/components/ui/button';
 import { RefreshCw } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export default function AnalyticsPage() {
   const { data, isLoading, error, refetch } = useAnalytics();
@@ -22,7 +23,7 @@ export default function AnalyticsPage() {
           className="flex items-center gap-2 self-start sm:self-auto"
           size="sm"
         >
-          <RefreshCw className={`h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} />
+          <RefreshCw className={cn('h-4 w-4', isLoading && 'animate-spin')} />
           Refresh
         </Button>
       </div>

@@ -18,10 +18,10 @@ export function TopPropertiesCard({ topProperties }: TopPropertiesCardProps) {
     <Card>
       <CardHeader>
         <CardTitle className="text-lg sm:text-xl">
-          Top Performing Properties
+          Your Performing Properties
         </CardTitle>
         <CardDescription>
-          Properties with the most views in the last 30 days.
+          Properties with the most views of all time.
         </CardDescription>
       </CardHeader>
       <CardContent className="h-[250px] sm:h-[300px] overflow-y-auto">

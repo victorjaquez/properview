@@ -1,10 +1,10 @@
 'use client';
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import type { Inquiry } from '@/components/types';
+import type { InquiryWithProperty } from '@/components/types';
 
 interface InquiriesContextType {
-  inquiries: Inquiry[];
+  inquiries: InquiryWithProperty[];
   unreadInquiriesCount: number;
   isLoading: boolean;
   error: string | null;
@@ -18,7 +18,7 @@ const InquiriesContext = createContext<InquiriesContextType | undefined>(
 );
 
 export function InquiriesProvider({ children }: { children: React.ReactNode }) {
-  const [inquiries, setInquiries] = useState<Inquiry[]>([]);
+  const [inquiries, setInquiries] = useState<InquiryWithProperty[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -30,7 +30,7 @@ export function InquiriesProvider({ children }: { children: React.ReactNode }) {
       if (!response.ok) {
         throw new Error('Failed to fetch inquiries');
       }
-      const data: Inquiry[] = await response.json();
+      const data: InquiryWithProperty[] = await response.json();
       setInquiries(data);
     } catch (err: any) {
       setError(err.message);

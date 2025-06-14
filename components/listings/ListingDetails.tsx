@@ -18,19 +18,23 @@ import {
   DollarSign,
   Eye,
   Share2,
+  RefreshCw,
 } from 'lucide-react';
 import type { Property } from '@/components/types';
 import { usePropertyAnalytics } from '@/hooks/usePropertyAnalytics';
 import { useShareCopy } from '@/hooks/useShareCopy';
+import { cn } from '@/lib/utils';
 
 interface ListingDetailsProps {
   listing: Property;
 }
 
 export function ListingDetails({ listing }: ListingDetailsProps) {
-  const { analytics, isLoading: analyticsLoading } = usePropertyAnalytics(
-    listing.id
-  );
+  const {
+    analytics,
+    isLoading: analyticsLoading,
+    refetch: refetchAnalytics,
+  } = usePropertyAnalytics(listing.id);
   const shareOrCopy = useShareCopy();
 
   const calculateDaysOnMarket = (dateListed: string) => {
@@ -140,24 +144,40 @@ export function ListingDetails({ listing }: ListingDetailsProps) {
           )}
         </div>
 
-        <div className="grid grid-cols-3 gap-3 p-3 bg-muted rounded-lg">
-          <div className="text-center">
-            <p className="font-semibold text-sm">
-              {analyticsLoading ? '-' : analytics?.views || 0}
-            </p>
-            <p className="text-xs text-muted-foreground">Views</p>
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <h2 className="text-base font-semibold">Analytics</h2>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={refetchAnalytics}
+              disabled={analyticsLoading}
+              className="h-8 w-8 p-0"
+            >
+              <RefreshCw
+                className={cn('h-3 w-3', analyticsLoading && 'animate-spin')}
+              />
+            </Button>
           </div>
-          <div className="text-center">
-            <p className="font-semibold text-sm">
-              {analyticsLoading ? '-' : analytics?.inquiries || 0}
-            </p>
-            <p className="text-xs text-muted-foreground">Inquiries</p>
-          </div>
-          <div className="text-center">
-            <p className="font-semibold text-sm">
-              {calculateDaysOnMarket(listing.dateListed)}
-            </p>
-            <p className="text-xs text-muted-foreground">Days Listed</p>
+          <div className="grid grid-cols-3 gap-3 p-3 bg-muted rounded-lg">
+            <div className="text-center">
+              <p className="font-semibold text-sm">
+                {analyticsLoading ? '-' : analytics?.views || 0}
+              </p>
+              <p className="text-xs text-muted-foreground">Views</p>
+            </div>
+            <div className="text-center">
+              <p className="font-semibold text-sm">
+                {analyticsLoading ? '-' : analytics?.inquiries || 0}
+              </p>
+              <p className="text-xs text-muted-foreground">Inquiries</p>
+            </div>
+            <div className="text-center">
+              <p className="font-semibold text-sm">
+                {calculateDaysOnMarket(listing.dateListed)}
+              </p>
+              <p className="text-xs text-muted-foreground">Days Listed</p>
+            </div>
           </div>
         </div>
       </CardContent>
