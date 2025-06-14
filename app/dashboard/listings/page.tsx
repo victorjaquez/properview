@@ -1,14 +1,14 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useAuth } from '../../../providers/AuthProvider';
-import type { Property } from '../../../components/types';
+import { useAuth } from '@/providers/AuthProvider';
+import type { Property } from '@/components/types';
 import { ListingHeader } from '@/components/listings/ListingHeader';
 import { LoadingSkeleton } from '@/components/listings/LoadingSkeleton';
 import { EmptyState } from '@/components/listings/EmptyState';
 import { ListingCard } from '@/components/listings/ListingCard';
 import { ConfirmDialog } from '@/components/ui/confirm-dialog';
-import { useConfirm } from '@/hooks/use-confirm';
+import { useConfirm } from '@/hooks/useConfirm';
 
 export default function AgentListingsPage() {
   const [listings, setListings] = useState<Property[]>([]);

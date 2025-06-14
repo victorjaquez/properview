@@ -1,14 +1,9 @@
 'use client';
 
 import { useInquiriesContext } from '@/providers/InquiriesProvider';
-import type { Inquiry, Property } from '../../../components/types';
 import { InquiriesLoadingSkeleton } from '@/components/inquiries/InquiriesLoadingSkeleton';
 import { InquiriesTable } from '@/components/inquiries/InquiriesTable';
 import { useProperties } from '@/hooks/useProperties';
-
-interface InquiryWithProperty extends Inquiry {
-  property?: Property;
-}
 
 export default function InquiriesPage() {
   const { inquiries, markAsRead, markAsUnread, isLoading, error } =

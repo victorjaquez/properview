@@ -14,8 +14,8 @@ export function HeroSection() {
               </h1>
               <p className="max-w-[600px] text-muted-foreground md:text-xl">
                 The all-in-one platform for agents to manage listings, track
-                inquiries, and gain valuable insights. Focus on selling, we'll
-                handle the rest.
+                inquiries, and gain valuable insights. Focus on selling,
+                we&apos;ll handle the rest.
               </p>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">

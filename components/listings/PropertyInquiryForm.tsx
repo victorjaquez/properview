@@ -50,7 +50,6 @@ interface PropertyInquiryFormProps {
 }
 
 export function PropertyInquiryForm({
-  propertyId,
   isSubmitting,
   onSubmit,
   successMessage,

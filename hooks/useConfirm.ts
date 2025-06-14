@@ -18,10 +18,14 @@ export function useConfirm() {
     setIsLoading(true);
     try {
       await pendingAction();
-    } finally {
-      setIsLoading(false);
       setIsOpen(false);
       setPendingAction(null);
+    } catch (error) {
+      console.error('Action failed:', error);
+      // Re-throw so caller can handle the error
+      throw error;
+    } finally {
+      setIsLoading(false);
     }
   };
 

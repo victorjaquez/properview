@@ -27,9 +27,6 @@ export function usePropertyDetail(id: string): UsePropertyDetailReturn {
           throw new Error('Failed to fetch listing details');
         }
         const data: Property = await response.json();
-        if (data.status !== 'active') {
-          throw new Error('This listing is not currently available.');
-        }
         setProperty(data);
       } catch (err: any) {
         setError(err.message);

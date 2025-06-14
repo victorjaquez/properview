@@ -14,7 +14,7 @@ import { PlusCircle } from 'lucide-react';
 export default function DashboardOverviewPage() {
   const { stats, isLoading: statsLoading } = useDashboardStats();
   const { activities, isLoading: activitiesLoading } = useRecentActivity();
-  const { data: analyticsData, isLoading: analyticsLoading } = useAnalytics();
+  const { data: analyticsData } = useAnalytics();
 
   return (
     <div className="flex flex-col gap-6">

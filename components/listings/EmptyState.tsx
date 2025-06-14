@@ -9,8 +9,8 @@ export function EmptyState() {
       <CardTitle>No Listings Yet</CardTitle>
       <CardContent>
         <p className="text-muted-foreground mb-4">
-          You haven't added any properties. Get started by adding your first
-          listing!
+          You haven&apos;t added any properties. Get started by adding your
+          first listing!
         </p>
         <Link href="/dashboard/listings/add">
           <Button>

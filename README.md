@@ -9,6 +9,8 @@ Real estate listing and management platform for agents to manage properties and 
 - **UI:** Tailwind CSS with shadcn/ui components (supports dark/light mode)
 - **Forms:** React Hook Form with Zod validation
 - **Analytics:** Custom tracking with Prisma-based **storage**
+- **Testing:** Jest for unit tests
+- **Linting:** ESLint for code quality and consistency
 
 ## Setup & Installation
 
@@ -114,6 +116,14 @@ Real estate listing and management platform for agents to manage properties and 
 
 - `yarn db:studio` - Open Prisma Studio
 - `yarn db:push --force-reset && yarn db:seed` - Reset and reseed database
+
+## Testing
+
+**Commands:**
+
+- `yarn test` - Run all unit tests
+- `yarn test:watch` - Run tests in watch mode
+- `yarn test:coverage` - Run tests with coverage report
 
 ## Demo Features
 
