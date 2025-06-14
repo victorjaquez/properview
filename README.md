@@ -145,3 +145,19 @@ For production use, I would love to enhance with:
 - **CRM Integration** - Lead management, email automation, follow-up workflows
 - **Mobile App** - React Native companion app for agents
 - **Third-party APIs** - MLS integration, mortgage calculators, neighborhood data
+
+## Screenshots
+<img width="500" alt="Screenshot 2025-06-13 at 22 35 57" src="https://github.com/user-attachments/assets/d5db12f9-99c3-41ee-af2c-38814cf182d8" />
+<img width="500" alt="Screenshot 2025-06-13 at 22 36 03" src="https://github.com/user-attachments/assets/22b9f21d-d01c-4f49-96d0-281aeea20564" />
+<img width="500" alt="Screenshot 2025-06-13 at 22 36 11" src="https://github.com/user-attachments/assets/64736b6b-0945-4adc-93dc-4e31b89e9a42" />
+<img width="500" alt="Screenshot 2025-06-13 at 22 36 16" src="https://github.com/user-attachments/assets/7d5b9d2b-e33f-4dac-84ae-01550e15890c" />
+<img width="500" alt="Screenshot 2025-06-13 at 22 36 32" src="https://github.com/user-attachments/assets/1e2c77ed-0d70-41fb-83ae-00af5be2146f" />
+<img width="500" alt="Screenshot 2025-06-13 at 22 38 24" src="https://github.com/user-attachments/assets/54cf8a27-0aa8-430f-993a-ed7c2f9a0c96" />
+<img width="500" alt="Screenshot 2025-06-13 at 22 36 48" src="https://github.com/user-attachments/assets/f45f8836-366d-4617-b929-188cdd75b6fe" />
+<img width="500" alt="Screenshot 2025-06-13 at 22 36 53" src="https://github.com/user-attachments/assets/87ba86dc-4821-4751-be8c-8924f9d60e4e" />
+<img width="500" alt="Screenshot 2025-06-13 at 22 37 04" src="https://github.com/user-attachments/assets/bdfa7953-cbb5-4ec5-a197-93c454a6b5e5" />
+<img width="500" alt="Screenshot 2025-06-13 at 22 37 14" src="https://github.com/user-attachments/assets/e2d6e69c-a35b-4850-ad41-a8c0f49caf36" />
+<img width="416" alt="Screenshot 2025-06-13 at 22 40 04" src="https://github.com/user-attachments/assets/44d7ca33-5084-4150-9543-18b01acc423c" />
+<img width="416" alt="Screenshot 2025-06-13 at 22 40 13" src="https://github.com/user-attachments/assets/ba8db8e2-29c2-4c40-9639-e3135e57ad5b" />
+
+
