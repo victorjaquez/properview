@@ -1,0 +1,95 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Property {
+  id           String   @id @default(cuid())
+  agentId      String
+  title        String
+  price        Int
+  address      String
+  bedrooms     Int
+  bathrooms    Float
+  description  String
+  status       String   // active, pending, sold
+  imageUrl     String?
+  sqft         Int?
+  propertyType String?
+  dateListed   String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  inquiries    Inquiry[]
+  listingViews ListingView[]
+}
+
+model Inquiry {
+  id            String   @id @default(cuid())
+  propertyId    String
+  name          String
+  email         String
+  phone         String?
+  message       String
+  isRead        Boolean  @default(false)
+  dateSubmitted DateTime @default(now())
+  createdAt     DateTime @default(now())
+
+  property      Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+}
+
+model Agent {
+  id       String @id @default(cuid())
+  name     String
+  email    String @unique
+  phone    String?
+  imageUrl String?
+}
+
+// Analytics Models
+model ListingView {
+  id            String   @id @default(cuid())
+  propertyId    String
+  sessionId     String   // Browser fingerprint/session ID
+  userAgent     String?
+  ipAddress     String?
+  referrer      String?
+  viewedAt      DateTime @default(now())
+
+  property      Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@index([propertyId])
+  @@index([sessionId])
+  @@index([viewedAt])
+}
+
+model AnalyticsSummary {
+  id              String   @id @default(cuid())
+  date            String   // YYYY-MM-DD format
+  totalViews      Int      @default(0)
+  uniqueVisitors  Int      @default(0)
+  totalInquiries  Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([date])
+}
+
+model PropertyAnalytics {
+  id              String   @id @default(cuid())
+  propertyId      String
+  date            String   // YYYY-MM-DD format
+  views           Int      @default(0)
+  uniqueVisitors  Int      @default(0)
+  inquiries       Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([propertyId, date])
+  @@index([propertyId])
+  @@index([date])
+}
