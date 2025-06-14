@@ -163,7 +163,9 @@ export function ListingDetails({ listing }: ListingDetailsProps) {
       </CardContent>
       <CardFooter className="p-4 border-t flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
         <div>
-          <p className="text-sm font-medium">Listed by: John Doe (Agent)</p>
+          <p className="text-sm font-medium">
+            Listed by: {listing.agent?.name || 'Unknown Agent'}
+          </p>
           <p className="text-xs text-muted-foreground">
             Date Listed: {new Date(listing.dateListed).toLocaleDateString()}
           </p>

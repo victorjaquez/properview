@@ -66,7 +66,7 @@ export function PropertyDetails({ property }: PropertyDetailsProps) {
           ))}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-3 gap-4">
           <div>
             <h2 className="text-base font-semibold mb-1">
               About this property
@@ -83,6 +83,15 @@ export function PropertyDetails({ property }: PropertyDetailsProps) {
               </p>
             </div>
           )}
+          <div>
+            <h2 className="text-base font-semibold mb-1">Listing Agent</h2>
+            <p className="text-muted-foreground text-sm">
+              {property.agent?.name || 'Unknown Agent'}
+            </p>
+            <p className="text-xs text-muted-foreground">
+              Date Listed: {new Date(property.dateListed).toLocaleDateString()}
+            </p>
+          </div>
         </div>
       </CardContent>
     </Card>

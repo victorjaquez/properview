@@ -24,6 +24,7 @@ model Property {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
+  agent        Agent    @relation(fields: [agentId], references: [id])
   inquiries    Inquiry[]
   listingViews ListingView[]
 }
@@ -43,11 +44,13 @@ model Inquiry {
 }
 
 model Agent {
-  id       String @id @default(cuid())
-  name     String
-  email    String @unique
-  phone    String?
-  imageUrl String?
+  id         String @id @default(cuid())
+  name       String
+  email      String @unique
+  phone      String?
+  imageUrl   String?
+
+  properties Property[]
 }
 
 // Analytics Models

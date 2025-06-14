@@ -12,6 +12,10 @@ export interface Property {
   dateListed: string;
   sqft?: number; // Optional
   propertyType?: string; // Optional
+  agent?: {
+    name: string;
+    email: string;
+  };
 }
 
 export interface Inquiry {

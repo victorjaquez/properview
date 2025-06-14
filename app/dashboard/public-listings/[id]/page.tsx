@@ -1,31 +1,20 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import type { Property } from '@/components/types';
 import { DetailHeader } from '@/components/listings/DetailHeader';
 import { DetailLoadingSkeleton } from '@/components/listings/DetailLoadingSkeleton';
 import { DetailNotFound } from '@/components/listings/DetailNotFound';
 import { ListingDetails } from '@/components/listings/ListingDetails';
-import { ConfirmDialog } from '@/components/ui/confirm-dialog';
-import { useConfirm } from '@/hooks/useConfirm';
-import { MOCK_AGENT_ID } from '@/lib/constants';
 
-export default function ListingDetailPage() {
+export default function PublicListingDetailPage() {
   const params = useParams();
-  const router = useRouter();
   const id = params.id as string;
 
   const [listing, setListing] = useState<Property | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const {
-    isOpen,
-    isLoading: isDeleting,
-    confirm,
-    handleConfirm,
-    handleCancel,
-  } = useConfirm();
 
   useEffect(() => {
     if (id) {
@@ -52,20 +41,6 @@ export default function ListingDetailPage() {
     }
   }, [id]);
 
-  const handleDelete = async () => {
-    if (!listing) return;
-
-    confirm(async () => {
-      const response = await fetch(`/api/properties/${listing.id}`, {
-        method: 'DELETE',
-      });
-      if (!response.ok) {
-        throw new Error('Failed to delete listing');
-      }
-      router.push('/dashboard/listings');
-    });
-  };
-
   if (isLoading) {
     return <DetailLoadingSkeleton />;
   }
@@ -78,22 +53,11 @@ export default function ListingDetailPage() {
     <div className="max-w-4xl mx-auto space-y-4">
       <DetailHeader
         listingId={listing.id}
-        onDelete={handleDelete}
-        isAdmin={listing.agentId === MOCK_AGENT_ID}
-        backUrl="/dashboard/listings"
+        onDelete={() => {}} // No delete for public listings
+        isAdmin={false} // No admin actions for public listings
+        backUrl="/dashboard/public-listings"
       />
       <ListingDetails listing={listing} />
-
-      <ConfirmDialog
-        open={isOpen}
-        onOpenChange={handleCancel}
-        title="Delete Listing"
-        description="Are you sure you want to delete this listing? This action cannot be undone."
-        onConfirm={handleConfirm}
-        isLoading={isDeleting}
-        confirmText="Delete"
-        variant="destructive"
-      />
     </div>
   );
 }

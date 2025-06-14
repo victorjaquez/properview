@@ -25,7 +25,7 @@ export function useRecentActivity(): UseRecentActivityReturn {
       setIsLoading(true);
       setError(null);
       try {
-        const response = await fetch('/api/dashboard/activity');
+        const response = await fetch('/api/agent/dashboard/activity');
         if (!response.ok) {
           throw new Error('Failed to fetch recent activity');
         }

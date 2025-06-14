@@ -26,7 +26,7 @@ export function InquiriesProvider({ children }: { children: React.ReactNode }) {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch('/api/inquiries');
+      const response = await fetch('/api/agent/inquiries');
       if (!response.ok) {
         throw new Error('Failed to fetch inquiries');
       }

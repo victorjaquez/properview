@@ -10,6 +10,7 @@ import {
   Settings,
   LogOut,
   Mountain,
+  Globe,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
@@ -42,13 +43,6 @@ interface NavItem {
   className?: string;
   badgeCount?: number;
 }
-
-const navItems: NavItem[] = [
-  { href: '/dashboard', label: 'Overview', icon: Home },
-  { href: '/dashboard/listings', label: 'Listings', icon: ListChecks },
-  { href: '/dashboard/inquiries', label: 'Inquiries', icon: MessageCircle },
-  { href: '/dashboard/analytics', label: 'Analytics', icon: BarChart2 },
-];
 
 const secondaryNavItems: NavItem[] = [
   { href: '/dashboard/settings', label: 'Settings', icon: Settings },
@@ -117,7 +111,12 @@ export function AppSidebar() {
   // Dynamic navItems with badge count
   const navItems: NavItem[] = [
     { href: '/dashboard', label: 'Overview', icon: Home },
-    { href: '/dashboard/listings', label: 'Listings', icon: ListChecks },
+    { href: '/dashboard/listings', label: 'My Listings', icon: ListChecks },
+    {
+      href: '/dashboard/public-listings',
+      label: 'Public Listings',
+      icon: Globe,
+    },
     {
       href: '/dashboard/inquiries',
       label: 'Inquiries',

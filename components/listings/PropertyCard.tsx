@@ -5,11 +5,12 @@ import type { Property } from '@/components/types';
 
 interface PropertyCardProps {
   property: Property;
+  href?: string;
 }
 
-export function PropertyCard({ property }: PropertyCardProps) {
+export function PropertyCard({ property, href }: PropertyCardProps) {
   return (
-    <Link href={`/listings/${property.id}`} className="block">
+    <Link href={href || `/listings/${property.id}`} className="block">
       <Card className="overflow-hidden flex flex-col hover:shadow-lg transition-shadow cursor-pointer">
         <CardHeader className="p-0 relative">
           <Image

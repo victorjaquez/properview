@@ -4,13 +4,21 @@ import { MOCK_AGENT_ID } from '@/lib/constants';
 
 // Get single property by ID
 export async function GET(
-  request: Request,
+  _request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { id } = await params;
     const property = await prisma.property.findUnique({
       where: { id },
+      include: {
+        agent: {
+          select: {
+            name: true,
+            email: true,
+          },
+        },
+      },
     });
 
     if (!property) {
@@ -82,7 +90,7 @@ export async function PUT(
 
 // Delete property by ID
 export async function DELETE(
-  request: Request,
+  _request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
