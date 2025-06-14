@@ -42,7 +42,7 @@ I chose Next.js 15 with TypeScript because I wanted a single codebase for both f
    - Mixed property statuses (active, pending, sold)
    - Realistic sold/pending dates for analytics
    - Sample inquiries distributed over the last 30 days
-   - 30 days of analytics data (views, unique visitors, inquiries)
+   - Historical analytics data (views, unique visitors, inquiries)
    - Demo session tracking for view analytics
 
 5. **Run the Project**
@@ -78,7 +78,7 @@ I chose Next.js 15 with TypeScript because I wanted a single codebase for both f
 - **View Inquiries** (`/dashboard/inquiries`) - Track buyer inquiries with read/unread status
 - **Analytics** (`/dashboard/analytics`) - Comprehensive performance metrics including:
   - Total views, inquiries, and sales value
-  - 30-day trend analysis
+  - Historical trend analysis
   - Top-performing properties
   - Real-time daily metrics
   - Property-specific analytics (views, inquiries, unique visitors)
@@ -136,7 +136,7 @@ This application is designed for **local demonstration** purposes:
 - **Simple Analytics Tracking** - Basic session IDs for demo view tracking
 - **Real-time Updates** - Views and inquiries update immediately
 - **Incognito-friendly** - Each new session generates unique analytics
-- **30-day Historical Data** - Pre-seeded analytics for comprehensive demo
+- **Historical Data** - Pre-seeded analytics for comprehensive demo
 
 For production use, I would love to enhance with:
 
