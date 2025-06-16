@@ -4,6 +4,7 @@ Real estate listing and management platform for agents to manage properties and 
 
 ## Tech Stack
 
+- **Runtime:** Node.js v24.1.0
 - **Framework:** Next.js 15 with TypeScript
 - **Database:** SQLite with Prisma ORM
 - **UI:** Tailwind CSS with shadcn/ui components (supports dark/light mode)
@@ -11,6 +12,32 @@ Real estate listing and management platform for agents to manage properties and 
 - **Analytics:** Custom tracking with Prisma-based **storage**
 - **Testing:** Jest for unit tests
 - **Linting:** ESLint for code quality and consistency
+
+## Project Structure
+
+```
+properview/
+├── app/                    # Next.js 15 app router
+│   ├── dashboard/          # Protected dashboard routes
+│   ├── api/               # API endpoints
+│   ├── listings/          # Public listings pages
+│   ├── login/             # Auth pages
+│   └── layout.tsx         # Root layout
+├── components/            # React components
+│   ├── ui/               # Shadcn/ui components
+│   ├── layout/           # Layout components (Navbar, etc)
+│   ├── dashboard/        # Dashboard-specific components
+│   ├── listings/         # Listing components
+│   ├── inquiries/        # Inquiry management
+│   ├── analytics/        # Analytics components
+│   └── settings/         # Settings components
+├── lib/                  # Utilities & helpers
+├── prisma/              # Database schema & seeds
+├── hooks/              # Custom React hooks
+├── providers/          # Context providers
+├── __tests__/          # Jest test files
+└── public/             # Static assets
+```
 
 ## Reasoning
 
@@ -151,6 +178,7 @@ For production use, I would love to enhance with:
 - **Third-party APIs** - MLS integration, mortgage calculators, neighborhood data
 
 ## Screenshots
+
 <img width="500" alt="Screenshot 2025-06-13 at 22 35 57" src="https://github.com/user-attachments/assets/d5db12f9-99c3-41ee-af2c-38814cf182d8" />
 <img width="500" alt="Screenshot 2025-06-13 at 22 36 03" src="https://github.com/user-attachments/assets/22b9f21d-d01c-4f49-96d0-281aeea20564" />
 <img width="500" alt="Screenshot 2025-06-13 at 22 36 11" src="https://github.com/user-attachments/assets/64736b6b-0945-4adc-93dc-4e31b89e9a42" />
@@ -163,5 +191,3 @@ For production use, I would love to enhance with:
 <img width="500" alt="Screenshot 2025-06-13 at 22 37 14" src="https://github.com/user-attachments/assets/e2d6e69c-a35b-4850-ad41-a8c0f49caf36" />
 <img width="416" alt="Screenshot 2025-06-13 at 22 40 04" src="https://github.com/user-attachments/assets/44d7ca33-5084-4150-9543-18b01acc423c" />
 <img width="416" alt="Screenshot 2025-06-13 at 22 40 13" src="https://github.com/user-attachments/assets/ba8db8e2-29c2-4c40-9639-e3135e57ad5b" />
-
-
