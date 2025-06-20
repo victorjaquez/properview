@@ -39,10 +39,6 @@ properview/
 └── public/             # Static assets
 ```
 
-## Reasoning
-
-I chose Next.js 15 with TypeScript because I wanted a single codebase for both frontend and backend. I also needed API routes to keep me in one context, and I love how file-based routing maps directly to my pages and APIs. For data storage I picked SQLite with Prisma since I wanted minimal setup and appreciate Prisma’s type-safe queries for rapid prototyping. On the UI side I went with Tailwind to style components quickly and consistently, and I chose shadcn/ui for its polished components that support dark and light modes out of the box. For forms I used React Hook Form and Zod because I needed fast forms and reliable validation. If I’d had more time I would have liked to add pagination or infinite scroll, image uploads, and a gallery view.
-
 ## Setup & Installation
 
 1. **Install dependencies**
